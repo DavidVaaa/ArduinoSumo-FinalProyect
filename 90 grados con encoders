@@ -1,0 +1,27 @@
+#include <Zumo32U4.h>
+
+Zumo32U4Motors motors;
+Zumo32U4Encoders encoders;
+Zumo32U4ButtonA buttonA;
+Zumo32U4ProximitySensors proxSensors;
+
+void setup() 
+{
+  buttonA.waitForButton();
+  proxSensors.initThreeSensors();
+}
+
+void loop() 
+{
+    int16_t countsLeft = encoders.getCountsLeft();
+    int16_t countsRight = encoders.getCountsRight();
+
+    if (countsLeft < 610)
+      {
+        motors.setSpeeds(200, -200);
+      }
+    else
+      {
+        motors.setSpeeds(0, 0);
+      }
+}
